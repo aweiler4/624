@@ -17,13 +17,22 @@ const Movies = () => {
         console.log(e.target.value)
     }
 
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        let title = formData.baseURL + formData.apikey + formData.query + formData.movieTitle
+        setFormData({...formData, searchURL: title})
+        console.log(formData.searchURL)
+    }
+
     return(
         <form>
             <label htmlFor='search'>Search Title </label>
             <input onChange={(e) => {
                 handleOnchange(e)
             }} value={formData.movieTitle} id='search' type='text' name='search' placeholder='Search for Movies'></input>{' '}
-            <input type='submit'></input>
+            <input onClick={(e) => {
+                handleFormSubmit(e)
+            }} type='submit'></input>
         </form>
     )
     
